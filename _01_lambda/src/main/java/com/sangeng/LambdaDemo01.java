@@ -41,8 +41,11 @@ public class LambdaDemo01 {
                 return value%2==0;
             }
         });*/
-        printNum((int value) ->{
-            return value%2==0;
+//        printNum((int value) ->{
+//            return value%2==0;
+//        });
+        printNum((int value1) ->{
+            return value1%2==0;
         });
 
 
