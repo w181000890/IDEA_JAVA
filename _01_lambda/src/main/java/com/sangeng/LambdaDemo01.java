@@ -48,6 +48,7 @@ public class LambdaDemo01 {
         }
     }
 
+
     public static int calculateNum(IntBinaryOperator operator){
         int a = 10;
         int b = 20;
