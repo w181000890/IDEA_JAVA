@@ -34,7 +34,13 @@ public class LambdaDemo01 {
 
         System.out.println(i);*/
 
-//        demo3
+    // demo3
+        printNum(new IntPredicate() {
+            @Override
+            public boolean test(int value) {
+                return value%2==0;
+            }
+        });
 
 
     }
