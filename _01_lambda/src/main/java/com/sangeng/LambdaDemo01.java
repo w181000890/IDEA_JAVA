@@ -44,8 +44,8 @@ public class LambdaDemo01 {
 //        printNum((int value) ->{
 //            return value%2==0;
 //        });
-        printNum((int value1) ->{
-            return value1%2==0;
+        printNum((int value2) ->{
+            return value2%2==0;
         });
 
 
