@@ -25,6 +25,3 @@ public class Book {
     private String intro;
 
 }
-
-32  5   6
-6
