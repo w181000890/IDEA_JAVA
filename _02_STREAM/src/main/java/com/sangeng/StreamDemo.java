@@ -1,6 +1,5 @@
 package com.sangeng;
 
-import lombok.val;
 
 import java.lang.reflect.Array;
 import java.util.*;
@@ -15,8 +14,13 @@ import java.util.stream.Stream;
 public class StreamDemo {
 
     public static void main(String[] args) {
-
-        test22();
+        test25();
+        test24();
+//        test23();
+//        testNegate();
+//        testOr();
+//testAnd();
+//        test22();
 //        test21();
 
 //        test20();
@@ -67,6 +71,71 @@ public class StreamDemo {
         Stream<Map.Entry<String, Integer>> stream2 = map.entrySet().stream();*/
 
 
+    }
+
+    private static void test25() {
+        List<Author> authors = getAuthors();
+        authors.stream().parallel()
+                .map(author -> author.getAge())
+                .filter(age->age>10)
+                .forEach(age-> System.out.println(age));
+    }
+
+    private static void test24() {
+        List<Author> authors = getAuthors();
+        authors.stream()
+                .mapToInt(author->author.getAge())
+                .map(age->age+10)
+                .filter(age->age>18)
+                .forEach(age-> System.out.println(age));
+    }
+
+    private static void test23() {
+        List<Author> authors = getAuthors();
+        authors.stream()
+                .map(Author::getAge)
+                .map(String::valueOf)
+                .forEach(System.out::println);
+    }
+
+    private static void testNegate() {
+        //打印作家中年龄不大于17的作家。
+        List<Author> authors = getAuthors();
+        authors.stream()
+                .filter(new Predicate<Author>() {
+                    @Override
+                    public boolean test(Author author) {
+                        return author.getAge()>17;
+                    }
+                }.negate())
+                .forEach(author -> System.out.println(author));
+    }
+
+    private static void testOr() {
+        List<Author> authors = getAuthors();
+
+        authors.stream()
+                .filter(new Predicate<Author>() {
+                    @Override
+                    public boolean test(Author author) {
+                        return author.getAge()>17;
+                    }
+                }.or(new Predicate<Author>() {
+                    @Override
+                    public boolean test(Author author) {
+                        return author.getName().length()<2;
+                    }
+                }))
+                .forEach(author -> System.out.println(author));
+    }
+
+    private static void testAnd() {
+        //打印作家中年龄大于17并且姓名的长度大于1的作家。
+        List<Author> authors = getAuthors();
+        authors.stream()
+                .filter(((Predicate<Author>) author -> author.getAge() > 17)
+                        .and(author -> author.getName().length()>1))
+                .forEach(author -> System.out.println(author));
     }
 
     private static void test22() {
